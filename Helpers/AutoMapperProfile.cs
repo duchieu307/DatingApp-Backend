@@ -10,7 +10,7 @@ namespace Microservices.Helpers
     {
         public AutoMapperProfile()
         {
-            // CreateMap<Model, DTO>();
+            // CreateMap<dau`, cuoi>();
             CreateMap<User, UserForListDto>()
                 .ForMember(dest => dest.PhotoUrl,
                     opt => opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url))
@@ -33,6 +33,8 @@ namespace Microservices.Helpers
             CreateMap<PhotoForCreationDto, Photo>();
 
             CreateMap<UserForRegisterDto, User>();
+
+            CreateMap<MessageForCreationDto, Message>();
         }
     }
 }

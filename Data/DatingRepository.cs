@@ -113,6 +113,21 @@ namespace Microservices.Data
             } else {
                 return user.Likees.Where(user => user.LikerId == id).Select(i => i.LikeeId);
             }
-        }        
+        }
+
+        public async Task<Message> GetMessage(int id)
+        {
+            return await _context.Messages.FirstOrDefaultAsync(message => message.Id == id);
+        }
+
+        public Task<PagedList<Message>> GetMessagesForUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Message>> GetMessageThread(int useriD, int recipientId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
