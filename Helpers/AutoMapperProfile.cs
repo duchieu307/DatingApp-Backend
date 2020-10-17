@@ -34,7 +34,15 @@ namespace Microservices.Helpers
 
             CreateMap<UserForRegisterDto, User>();
 
-            CreateMap<MessageForCreationDto, Message>();
+            // map 2 chieu
+            CreateMap<MessageForCreationDto, Message>().ReverseMap();
+            
+            // forMember sau do chon gia tri, option
+            CreateMap<Message, MessageToReturnDto>()
+                .ForMember(member => member.SenderPhotoUrl, option => option
+                    .MapFrom(user => user.Sender.Photos.FirstOrDefault(photo => photo.IsMain).Url))
+                .ForMember(member => member.RecipientPhotoUrl, option => option
+                    .MapFrom(user => user.Recipient.Photos.FirstOrDefault(photo => photo.IsMain).Url));
         }
     }
 }
